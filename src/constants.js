@@ -1,4 +1,7 @@
-export const DEFAULT_MOVIES 	= 'DEFAULT_MOVIES';
+
+export const DEFAULT_MOVIES 		= 'DEFAULT_MOVIES';
+export const REQUEST_DEFAULT_MOVIES = 'REQUEST_DEFAULT_MOVIES';
+
 export const GET_MOVIE 			= 'GET_MOVIE';
 export const GET_GENRES 		= 'GET_GENRES';
 export const GET_GENRE_MOVIES 	= 'GET_GENRE_MOVIES';

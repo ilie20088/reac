@@ -1,21 +1,35 @@
 import axios from 'axios';
 
-import { DEFAULT_MOVIES, GET_MOVIE, GET_GENRES, GET_GENRE_MOVIES } from '../constants';
+import { REQUEST_DEFAULT_MOVIES, DEFAULT_MOVIES, GET_MOVIE, GET_GENRES, GET_GENRE_MOVIES } from '../constants';
 import { API_KEY, ROOT_URL } from '../constants';
 
 
-
+/*
+* Using thunks
+*/
 export function getDefaultMovies(){
-	const url = ROOT_URL + "movie/popular?" + API_KEY;
-	const request = axios.get(url);
+	return (dispatch) => {
+		dispatch({
+			type: REQUEST_DEFAULT_MOVIES
+		});
 
-	return {
-		type: DEFAULT_MOVIES,
-		payload: request
+
+		const url = ROOT_URL + "movie/popular?" + API_KEY;
+		const request = axios.get(url);
+
+		request.then(function(data){
+			dispatch({
+				type: DEFAULT_MOVIES,
+				payload: data
+			});	
+		});
 	}
+
 }
 
-
+/*
+* Using promises
+*/
 export function getGenres(){
 	const url = ROOT_URL + "genre/movie/list?" + API_KEY;
 	const request = axios.get(url);
@@ -26,7 +40,7 @@ export function getGenres(){
 	}
 }
 
-
+ 
 export function getMovie(id){
 	const url = ROOT_URL + "movie/" + id + "?" + API_KEY;
 	const request = axios.get(url);
