@@ -6,8 +6,8 @@ export const defaultMoviesReducer = (state = null, action) => {
 			console.log('Requesting default movies');
 			return null;
 		case DEFAULT_MOVIES:
-			return action.payload.data.results
-		default: 
+			return action.payload.data.results;
+		default:
 			return state;
 	}
 };

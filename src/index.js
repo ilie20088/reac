@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import ReduxPromise from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
@@ -12,13 +12,21 @@ import App from './components/app';
 import GenreMovies from './containers/genre_movies';
 import reducers from './reducers';
 import createLogger from 'redux-logger';
+import DevTools from './containers/dev_tools'
 
 
 const logger = createLogger();
 // const storeWithMiddleware = applyMiddleware(ReduxPromise, logger)(createStore);
 
 
-const store = createStore(reducers, applyMiddleware(ReduxPromise, ReduxThunk, logger));
+const enhancer = compose(
+  applyMiddleware(ReduxPromise, ReduxThunk, logger),
+  DevTools.instrument()
+);
+const store = createStore(reducers, enhancer);
+
+
+
 
 ReactDOM.render(
   <Provider store={store/*storeWithMiddleware(reducers)*/}>

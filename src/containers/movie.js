@@ -8,9 +8,17 @@ class Movie extends Component {
 		this.props.getMovie(this.props.params.id);
 	}
 
+	getInitialProps(){
+		return {
+			a: 2
+		};
+	}
+
+	// getInitialState(){}
+
 	render(){
-		if(this.props.movie == null){
-			return <span>Loading</span>
+		if(this.props.movie === null){
+			return <span>Loading</span>;
 		}
 
 		return(

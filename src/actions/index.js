@@ -21,10 +21,9 @@ export function getDefaultMovies(){
 			dispatch({
 				type: DEFAULT_MOVIES,
 				payload: data
-			});	
+			});
 		});
 	}
-
 }
 
 /*
@@ -40,7 +39,7 @@ export function getGenres(){
 	}
 }
 
- 
+
 export function getMovie(id){
 	const url = ROOT_URL + "movie/" + id + "?" + API_KEY;
 	const request = axios.get(url);
